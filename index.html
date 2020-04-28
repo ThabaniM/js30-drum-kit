@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Drum Kit</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+  <div class="keys">
+    <div data-key="65" class="key">
+      <kbd>A</kbd>
+      <span class="sound">clap</span>
+    </div>
+    <div data-key="83" class="key">
+      <kbd>S</kbd>
+      <span class="sound">hihat</span>
+    </div>
+    <div data-key="68" class="key">
+      <kbd>D</kbd>
+      <span class="sound">kick</span>
+    </div>
+    <div data-key="70" class="key">
+      <kbd>F</kbd>
+      <span class="sound">openhat</span>
+    </div>
+    <div data-key="71" class="key">
+      <kbd>G</kbd>
+      <span class="sound">boom</span>
+    </div>
+    <div data-key="72" class="key">
+      <kbd>H</kbd>
+      <span class="sound">ride</span>
+    </div>
+    <div data-key="74" class="key">
+      <kbd>J</kbd>
+      <span class="sound">snare</span>
+    </div>
+    <div data-key="75" class="key">
+      <kbd>K</kbd>
+      <span class="sound">tom</span>
+    </div>
+    <div data-key="76" class="key">
+      <kbd>L</kbd>
+      <span class="sound">tink</span>
+    </div>
+  </div>
+
+  <audio data-key="65" src="sounds/clap.wav"></audio>
+  <audio data-key="83" src="sounds/hihat.wav"></audio>
+  <audio data-key="68" src="sounds/kick.wav"></audio>
+  <audio data-key="70" src="sounds/openhat.wav"></audio>
+  <audio data-key="71" src="sounds/boom.wav"></audio>
+  <audio data-key="72" src="sounds/ride.wav"></audio>
+  <audio data-key="74" src="sounds/snare.wav"></audio>
+  <audio data-key="75" src="sounds/tom.wav"></audio>
+  <audio data-key="76" src="sounds/tink.wav"></audio>
+
+
+
+
+</body>
+<script>
+  'use strict';
+
+
+
+  function keyHandler(e) {
+     //nodelist - will have to use order of dom appearance to play them
+    var audio = document.querySelectorAll('audio');
+    var mainDiv = document.getElementsByClassName('key'); //in order to change to add class that will come in when btn pressed
+     //converts nodelist to array
+    
+    var keyPressed = e.key.toLowerCase();
+    var index;  //will pass to second event listener
+
+    //probably could have used a loop somehow but matching keys to keyboard makes it trickier than it looks
+    switch(keyPressed){
+      case 'a':
+        audio[0].play();
+        audio[0].currentTime = 0;
+        mainDiv[0].setAttribute('class', 'key playing');
+             // get classElement in order to remove it. class only exists after relevant button presses.
+        index = 0;
+        break;
+      case 's':
+        audio[1].play();
+        audio[1].currentTime = 0;
+        mainDiv[1].setAttribute('class', 'key playing');
+        index = 1;
+        break;
+      case 'd':
+        audio[2].play();
+        audio[2].currentTime = 0;
+        mainDiv[2].setAttribute('class', 'key playing');
+        index = 2;
+        break;
+      case 'f':
+        audio[3].play();
+        audio[3].currentTime = 0;
+        mainDiv[3].setAttribute('class', 'key playing');
+        index = 3;
+        break;
+      case 'g':
+        audio[4].play();
+        audio[4].currentTime = 0;
+        mainDiv[4].setAttribute('class', 'key playing');
+        index = 4;
+        break;
+      case 'h':
+        audio[5].play();
+        audio[5].currentTime = 0;
+        mainDiv[5].setAttribute('class', 'key playing');
+        index = 5;
+        break;
+      case 'j':
+        audio[6].play();
+        audio[6].currentTime = 0;
+        mainDiv[6].setAttribute('class', 'key playing');
+        index = 6;
+        break;
+      case 'k':
+        audio[7].play();
+        audio[7].currentTime = 0;
+        mainDiv[7].setAttribute('class', 'key playing');
+        index = 7;
+        break;
+      case 'l':
+        audio[8].play();
+        audio[8].currentTime = 0;
+        mainDiv[8].setAttribute('class', 'key playing');
+        index = 8;
+        break;
+      default :
+        alert('Press the keys that correspond to the ones on screen');
+      
+      
+    }  
+
+     
+    
+    document.addEventListener('keyup', function wrapper() {
+      removePlaying(e,index);
+    });
+
+   function removePlaying(e, index) {
+      mainDiv[index].setAttribute('class', 'key');
+    }
+   
+ 
+
+    
+
+  }
+
+
+  
+    document.addEventListener('keydown', keyHandler);
+
+    
+    
+  
+  </script>
+</html>
